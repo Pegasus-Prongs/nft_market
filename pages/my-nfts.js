@@ -37,6 +37,6 @@ export default function CreatorDashboard () {
   if (isLoading) return <LinearProgress/>
 
   return (
-    <NFTCardList nfts={nfts} setNfts={setNfts} withCreateNFT={true}/>
+    <NFTCardList nfts={nfts} setNfts={setNfts}/>
   )
 }

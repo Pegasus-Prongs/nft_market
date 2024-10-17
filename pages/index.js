@@ -25,6 +25,6 @@ export default function Home () {
   if (isLoading) return <LinearProgress/>
   if (!isLoading && !nfts.length) return <h1>No NFTs for sale</h1>
   return (
-    <NFTCardList nfts={nfts} setNfts={setNfts} withCreateNFT={false}/>
+    <NFTCardList nfts={nfts} />
   )
 }
