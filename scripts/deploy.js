@@ -17,13 +17,18 @@ function replaceEnvContractAddresses (marketplaceAddress, nftAddress, networkNam
 
 async function main () {
   process.env.IS_RUNNING = true
+  console.log("Main is called");
   const Marketplace = await hre.ethers.getContractFactory('Marketplace')
+  console.log("Marketplace is", Marketplace);
   const marketplace = await Marketplace.deploy()
+  console.log("marketpalce:", marketplace);
   await marketplace.deployed()
   console.log('Marketplace deployed to:', marketplace.address)
 
   const NFT = await hre.ethers.getContractFactory('NFT')
+  console.log("NFT is called");
   const nft = await NFT.deploy(marketplace.address)
+  console.log("nft:", nft);
   await nft.deployed()
   console.log('Nft deployed to:', nft.address)
 
