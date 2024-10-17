@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Web3Context } from '../src/components/providers/Web3Provider';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,12 @@ import {
     CircularProgress,
     Typography,
 } from '@mui/material';
+import { LinearProgress } from '@mui/material'
+
+import UnsupportedChain from '../src/components/molecules/UnsupportedChain'
+import InstallMetamask from '../src/components/molecules/InstallMetamask'
+
+import ConnectWalletMessage from '../src/components/molecules/ConnectWalletMessage'
 import { makeStyles } from '@mui/styles';
 import axios from 'axios';
 
@@ -49,9 +55,15 @@ export default function CreateNFT() {
     const [fileUrl, setFileUrl] = useState(defaultFileUrl);
     const classes = useStyles();
     const { register, handleSubmit, reset } = useForm();
-    const { nftContract } = useContext(Web3Context);
+    const {nftContract, isReady, network, hasWeb3 } = useContext(Web3Context);
     const [isLoading, setIsLoading] = useState(false);
+
+    const [hasWindowEthereum, setHasWindowEthereum] = useState(false)
     const router = useRouter();
+
+    useEffect(() => {
+        setHasWindowEthereum(window.ethereum)
+    }, [])
 
     async function createNft(metadataUrl) {
         const transaction = await nftContract.mintToken(metadataUrl);
@@ -99,6 +111,11 @@ export default function CreateNFT() {
             setIsLoading(false);
         }
     }
+
+    if (!hasWindowEthereum) return <InstallMetamask />
+    if (!hasWeb3) return <ConnectWalletMessage />
+    if (!network) return <UnsupportedChain />
+    if (isLoading) return <LinearProgress />
 
     return (
         <Card className={classes.root} component="form" onSubmit={handleSubmit(onSubmit)}>
