@@ -4,17 +4,18 @@ import NavBar from '../molecules/NavBar'
 import NFTModal from '../organisms/NFTModal'
 import NFTModalProvider from '../providers/NFTModalProvider'
 import { Web3Context } from '../providers/Web3Provider'
+import { Container } from '@mui/material'
 
-export default function BaseLayout ({ children }) {
+export default function BaseLayout({ children }) {
   const { network, balance, isReady, hasWeb3 } = useContext(Web3Context)
   const isLowOnEther = balance < 0.1
   return (
     <>
       <NFTModalProvider>
-        <NavBar/>
-        {hasWeb3 && isReady && network && isLowOnEther && <LowOnBalanceTip/>}
-        {children}
-        <NFTModal/>
+        <NavBar />
+          {hasWeb3 && isReady && network && isLowOnEther && <LowOnBalanceTip />}
+          {children}
+        <NFTModal />
       </NFTModalProvider>
     </>
   )
