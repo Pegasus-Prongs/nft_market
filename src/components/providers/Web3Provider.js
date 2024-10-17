@@ -7,7 +7,7 @@ import axios from 'axios'
 
 const contextDefaultValues = {
   account: '',
-  network: 'maticmum',
+  network: 'sepolia',
   balance: 0,
   connectWallet: () => {},
   marketplaceContract: null,
@@ -17,7 +17,7 @@ const contextDefaultValues = {
 }
 
 const networkNames = {
-  maticmum: 'MUMBAI',
+  sepolia: 'SEPOLIA',
   unknown: 'LOCALHOST'
 }
 
@@ -55,7 +55,7 @@ export default function Web3Provider ({ children }) {
       const web3Modal = new Web3Modal()
       const connection = await web3Modal.connect()
       setHasWeb3(true)
-      const provider = new ethers.providers.Web3Provider(connection, 'any')
+      const provider = new ethers.providers.Web3Provider(connection, 'sepolia')
       await getAndSetWeb3ContextWithSigner(provider)
 
       function onAccountsChanged (accounts) {
@@ -101,8 +101,10 @@ export default function Web3Provider ({ children }) {
 
   async function getAndSetNetwork (provider) {
     const { name: network } = await provider.getNetwork()
+    console.log("Network", network)
     const networkName = networkNames[network]
     setNetwork(networkName)
+    console.log("NetworkName===>", networkName)
     return networkName
   }
 
@@ -112,6 +114,7 @@ export default function Web3Provider ({ children }) {
       setNFTContract(null)
       return false
     }
+    console.log("networkname", networkName);
     const { data } = await axios(`/api/addresses?network=${networkName}`)
     const marketplaceContract = new ethers.Contract(data.marketplaceAddress, Market.abi, signer)
     setMarketplaceContract(marketplaceContract)

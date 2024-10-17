@@ -3,7 +3,7 @@ import { chains } from '../../utils/web3'
 import NavItem from './NavItem'
 
 export default function ConnectedAccountAddress({ account }) {
-  const accountUrl = `${chains.polygonMumbaiTestnet.explorers[0].url}/address/${account}`
+  const accountUrl = `${chains.sepolia.explorers[0].url}/address/${account}`
 
   return (
     <NavItem

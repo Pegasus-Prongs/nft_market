@@ -7,29 +7,29 @@ export function getProvider () {
 }
 
 export const chains = {
-  polygonMumbaiTestnet: {
-    name: 'Polygon Testnet Mumbai',
-    chain: 'Polygon',
+  sepolia: {
+    name: 'Sepolia test network',
+    chain: 'Ethereum',
     rpc: [
-      'https://matic-mumbai.chainstacklabs.com',
-      'https://rpc-mumbai.maticvigil.com',
-      'https://matic-testnet-archive-rpc.bwarelabs.com'
+      'https://sepolia.infura.io/v3/b0e32f20ec9c4a31acae5eb46e644e8e',
+      'https://rpc.sepolia.org/',
+      'https://sepolia.blockpi.network/v1/rpc/public'
     ],
     faucets: [
-      'https://faucet.polygon.technology/'
+      'https://sepoliafaucet.com/'
     ],
     nativeCurrency: {
-      name: 'MATIC',
-      symbol: 'MATIC',
+      name: 'Sepolia Ether',
+      symbol: 'ETH',
       decimals: 18
     },
-    infoURL: 'https://polygon.technology/',
-    shortName: 'maticmum',
-    chainId: 80001,
-    networkId: 80001,
+    infoURL: 'https://sepolia.net/',
+    shortName: 'sepolia',
+    chainId: 11155111,
+    networkId: 11155111,
     explorers: [{
-      name: 'polygonscan',
-      url: 'https://mumbai.polygonscan.com',
+      name: 'Etherscan',
+      url: 'https://sepolia.etherscan.io',
       standard: 'EIP3091'
     }]
   }
