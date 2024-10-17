@@ -63,7 +63,7 @@ const NavBar = () => {
           ) : (
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-start' }}>
               {pages.map(({ title, href }) => (
-                <NavItem title={title} href={href} />
+                <NavItem title={title} href={href} key={title} />
               ))}
             </Box>
           )}
