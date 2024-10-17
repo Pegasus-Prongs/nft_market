@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Typography } from '@mui/material'
 import { useContext } from 'react'
 import { getProvider, chains } from '../../utils/web3'
 import { Web3Context } from '../providers/Web3Provider'
@@ -47,10 +47,9 @@ export default function UnsupportedChain () {
     <PageMessageBox
       text="This blockchain is not supported."
     >
-      <Button
+      <Typography
         variant='outlined'
         color='primary'
-        onClick={ () => addNetwork(chains.sepolia, account) }
         sx={{
           maxWidth: 600,
           margin: 'auto',
@@ -59,7 +58,7 @@ export default function UnsupportedChain () {
         }}
       >
         { renderProviderText() }
-      </Button>
+      </Typography>
     </PageMessageBox>
   )
 }

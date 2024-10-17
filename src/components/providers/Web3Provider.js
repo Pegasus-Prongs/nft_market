@@ -57,7 +57,7 @@ export default function Web3Provider ({ children }) {
       setHasWeb3(true)
       const provider = new ethers.providers.Web3Provider(connection, 'sepolia')
       await getAndSetWeb3ContextWithSigner(provider)
-
+      
       function onAccountsChanged (accounts) {
         // Workaround to accountsChanged metamask mobile bug
         if (onAccountsChangedCooldown) return
